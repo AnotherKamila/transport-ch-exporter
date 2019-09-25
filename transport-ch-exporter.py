@@ -15,7 +15,7 @@ from twisted.internet import defer, endpoints, reactor, task
 import treq
 
 METRICS_PREFIX   = 'transport'
-API_BASEURL      = 'http://transport.opendata.ch/v1'
+API_BASEURL      = 'https://transport.opendata.ch/v1'
 REFRESH_INTERVAL = 10*60  # seconds
 CONNS_LIMIT      = 10     # how many connections we'll request in one go
 MIN_TIME_LEFT    = 2*60   # seconds, before we consider this connection missed
