@@ -6,9 +6,9 @@ Haven't you always wanted to have a proper dashboard to check your next tram? ;-
 
 ![grafana dashboard screenshot](./screenshot.png)
 
-Which connections are checked is configured in `config.yml` (an example is included here).
+Add your connections to `config.yml` (see the example included here).
 
-Once running, use queries such as:
+In your dashboards, use queries such as:
 ```
 min(transport_next_departure_unixtime{number=~"61|62"} - time())
 ```
