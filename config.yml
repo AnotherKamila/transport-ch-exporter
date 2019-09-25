@@ -1,6 +1,9 @@
-stations:  # Use https://transport.opendata.ch/examples/stationboard.html to find the name of the station
-  - Zürich, Oberwiesenstrasse
-  - Zürich, Neuaffoltern
-  - Zürich, Chaletweg
+# Use https://transport.opendata.ch/examples/stationboard.html to find station names
+connections:
+  - from: Zürich, Oberwiesenstrasse
+    to:   Zürich, ETH/Universitätsspital
+  - from: Zürich, Neuaffoltern
+    to:   Zürich, Militär-/Langstrasse
 
-#links_whitelist: [BUS32, BUS61, BUS62]
+# Not implemented yet:
+#links_whitelist: [BUS 32, BUS 61, BUS 62]
