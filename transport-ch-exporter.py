@@ -5,6 +5,7 @@ import yaml
 import functools
 from collections import namedtuple
 from datetime import datetime
+import time
 
 import attr
 import prometheus_client as prom
@@ -106,6 +107,8 @@ class TransportExporter:
             self.conn_times[j.key].add(j.departure_ts)
 
     def get_next_departure(self, key):
+        now = time.time()
+        self.conn_times[key] = set(t for t in self.conn_times[key] if t > now)
         return min(self.conn_times[key])
 
     def setup_metrics(self, key):
