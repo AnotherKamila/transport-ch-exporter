@@ -18,6 +18,7 @@ METRICS_PREFIX   = 'transport'
 API_BASEURL      = 'http://transport.opendata.ch/v1'
 REFRESH_INTERVAL = 10*60  # seconds
 CONNS_LIMIT      = 10     # how many connections we'll request in one go
+MIN_TIME_LEFT    = 2*60   # seconds, before we consider this connection missed
 
 # Yes yes, I am doing the exact opposite of
 # https://prometheus.io/docs/practices/naming/#labels
@@ -107,8 +108,8 @@ class TransportExporter:
             self.conn_times[j.key].add(j.departure_ts)
 
     def get_next_departure(self, key):
-        now = time.time()
-        self.conn_times[key] = set(t for t in self.conn_times[key] if t > now)
+        last_good = time.time() + MIN_TIME_LEFT
+        self.conn_times[key] = set(t for t in self.conn_times[key] if t > last_good)
         return min(self.conn_times[key])
 
     def setup_metrics(self, key):
